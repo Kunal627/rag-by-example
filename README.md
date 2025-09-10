@@ -68,7 +68,7 @@ This course combines **theory + hands-on notebooks** to help you understand, imp
 
 ---
 
-## 🚀 How to Use
+## How to Use
 
 - Each chapter has a **notebook** with explanations + code
 - Follow in order for a progressive learning path

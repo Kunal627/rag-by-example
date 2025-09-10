@@ -15,11 +15,11 @@ It felt like magic.
 But here’s the catch:
 
 - They sometimes **hallucinate** — confidently telling you that Mount Everest is in Canada.
-- They have **knowledge cutoffs** — ask about yesterday’s news, and they stare into the void. 
+- They have **knowledge cutoffs** — ask about yesterday’s news, and they stare into the void.
 - And updating them means retraining billion-parameter behemoths, which costs more than fueling a rocket to Mars.
 
 So while LLMs were powerful, they were also a little… *unreliable*.
-It was like having a brilliant friend who’s read every book in the library — but also insists that the moon landing was filmed in a Hollywood basement. 
+It was like having a brilliant friend who’s read every book in the library — but also insists that the moon landing was filmed in a Hollywood basement.
 
 ## Enter RAG
 
