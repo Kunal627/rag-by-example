@@ -36,91 +36,46 @@ def clean_text(text):
     return text
 
 
+
+def extract_recipes_from_pdf(doc, skip_pages=10, end_page=62):
+
+    new_recipe = False
+    new_recipe_data = {"name": "", "content": "", "metadata": {"page": 0}}
+    spans = []
+    directions = ""
+    ingredients = ""
+    for page_num, page in enumerate(doc[skip_pages:end_page], start=skip_pages+1):
+        for b in page.get_text("dict")["blocks"]:
+            if "lines" in b:
+                for line in b["lines"]:
+                    for span in line["spans"]:
+                        if span["font"] == "MarkerFelt" and int(span["size"]) == 23.0:
+                            if not new_recipe:
+                                if new_recipe_data["name"] or new_recipe_data["content"]:
+                                    new_recipe_data["metadata"]["page"] = page_num
+                                    new_recipe_data["content"] = directions.strip() + "\nIngredients:" + ingredients.strip()
+                                    spans.append(copy.deepcopy(new_recipe_data))
+                                new_recipe_data = {"name": "", "content": "", "metadata": {"page": 0}}
+                                directions = ""
+                                ingredients = ""
+                            new_recipe = True
+                            new_recipe_data["name"] += " " + span["text"].strip()
+
+                        else:
+                            if span["color"] == 16777215 and span["char_flags"] == 24: # white text
+                                ingredients += " " + span["text"].strip().replace("\n", " ") + ","
+                            #if is_numeric(span["text"]):
+                            #    continue
+
+                            if span['font'] in ['OpenSans-SemiboldItalic', 'OpenSans-Light'] and span['char_flags'] in [16, 24] and span['color'] !=16777215:
+                                directions += " " + span["text"].strip() 
+                            new_recipe = False
+    return spans
+                    
+
 def is_numeric(text):
     try:
         float(text)
         return True
     except ValueError:
         return False
-    
-def sort_spans(doc, skip_pages=0):
-    all_spans = []
-    for page_num, page in enumerate(doc[skip_pages:], start=skip_pages+1):
-        spans = []
-
-        # Collect all spans from all blocks
-        for b in page.get_text("dict")["blocks"]:
-            if "lines" in b:
-                for line in b["lines"]:
-                    for span in line["spans"]:
-                        span["page"] = page_num
-                        spans.append(span)
-
-        # Sort spans by y (top of bbox), then x (left of bbox)
-        spans_sorted = sorted(spans, key=lambda s: (round(s["bbox"][1], 1), s["bbox"][0]))
-        all_spans.extend(spans_sorted)
-
-    return all_spans
-
-def semantic_chunking(spans):
-    chunks = []
-    new_recipe_data = {"name": "", "content": "", "metadata": {"page": 0}}
-    new_recipe = False
-    for span in spans:
-
-        if span["font"] == "MarkerFelt" and int(span["size"]) == 23.0:  # Only add non-empty spans
-            if not new_recipe:
-                #print(new_recipe_data)
-                if new_recipe_data["name"] or new_recipe_data["content"]:
-                    new_recipe_data["metadata"]["page"] = span["page"]
-                    chunks.append(copy.deepcopy(new_recipe_data))
-                new_recipe_data = {"name": "", "content": "", "metadata": {"page": 0}}
-
-            new_recipe = True
-            new_recipe_data["name"] += " " + span["text"].strip()
-
-        else:
-            new_recipe = False
-            if int(span['size']) == 20.0 and is_numeric(span["text"]):
-                continue
-            if int(span["size"]) == 12.0 and span["text"].strip() == "page":
-                continue
-            if int(span["size"]) != 30.0:
-                new_recipe_data["content"] += span["text"].strip() + " "
-
-    return chunks
-
-def semantic_cunks_unsorted(doc, skip_pages=0):
-    spans = []
-    new_recipe = False
-    new_recipe_data = {"name": "", "content": "", "metadata": {"page": 0}}
-
-    for page_num, page in enumerate(doc[skip_pages:], start=skip_pages):
-
-            # Collect all spans from all blocks
-            for b in page.get_text("dict")["blocks"]:
-                if "lines" in b:
-                    for line in b["lines"]:
-                        for span in line["spans"]:
-                            span["page"] = page_num
-                            if span["font"] == "MarkerFelt" and int(span["size"]) == 23.0:  # Only add non-empty spans
-                                if not new_recipe:
-                                    #print(new_recipe_data)
-                                    if new_recipe_data["name"] or new_recipe_data["content"]:
-                                        new_recipe_data["metadata"]["page"] = page_num
-                                        spans.append(copy.deepcopy(new_recipe_data))
-                                    new_recipe_data = {"name": "", "content": "", "metadata": {"page": 0}}
-
-                                new_recipe = True
-                                new_recipe_data["name"] += " " + span["text"].strip()
-
-                            else:
-                                new_recipe = False
-                                if int(span['size']) == 20.0 and is_numeric(span["text"]):
-                                    continue
-                                if int(span["size"]) == 12.0 and span["text"].strip() == "page":
-                                    continue
-                                if int(span["size"]) != 30.0:
-                                    new_recipe_data["content"] += span["text"].strip() + " "
-    
-    return spans
