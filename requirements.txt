@@ -1,2 +1,7 @@
 PyMuPDF==1.26.4
 pdfplumber
+langchain-community
+sentence-transformers
+faiss-cpu
+rank_bm25
+nltk

@@ -7,6 +7,13 @@ This course combines **theory + hands-on notebooks** to help you understand, imp
 
 ## Table of Contents
 
+### Pre-requisites
+
+1. An IDE for development with python setup (and dependencies in requirements.txt)
+2. Pytorch with cuda if running on GPU
+
+alternative, use google collab
+
 ### 1. Introduction
 
 - What is RAG?
@@ -25,43 +32,40 @@ This course combines **theory + hands-on notebooks** to help you understand, imp
 - Popular embedding models
 - Generating and storing embeddings
 
-### 4. Vector Databases
+### 4. Vector Databases and Retrieval Strategies
 
 - Introduction to vector stores
 - FAISS, Chroma, Pinecone, Weaviate
 - Indexing and similarity search
-
-### 5. Retrieval Strategies
-
 - Dense retrieval
 - Sparse retrieval (BM25)
 - Hybrid retrieval
 
-### 6. RAG Pipeline
+### 5. RAG Pipeline
 
 - User → Retriever → LLM → Answer flow
 - Basic pipeline implementation
 - First working RAG demo
 
-### 7. Enhancements
+### 6. Enhancements
 
 - Prompt engineering
 - Reranking retrieved results
 - Handling long contexts
 
-### 8. Evaluation
+### 7. Evaluation
 
 - Metrics for RAG (precision, recall, faithfulness)
 - Human vs. automated evaluation
 - Benchmark datasets
 
-### 9. Advanced Topics
+### 8. Advanced Topics
 
 - Multi-turn conversational RAG
 - Tool-augmented RAG
 - Cost & performance optimization
 
-### 10. Capstone Project
+### 9. Capstone Project
 
 - End-to-end RAG app
 - Deployment with Gradio/Streamlit
