@@ -10,9 +10,8 @@ This course combines **theory + hands-on notebooks** to help you understand, imp
 ### Pre-requisites
 
 1. An IDE for development with python setup (and dependencies in requirements.txt)
-2. Pytorch with cuda if running on GPU
-
-alternative, use google collab
+2. Pytorch CUDA (I am running CUDA 12.6)
+3. Python 3.12
 
 ### 1. Introduction
 
@@ -59,16 +58,11 @@ alternative, use google collab
 - Human vs. automated evaluation
 - Benchmark datasets
 
-### 8. Advanced Topics
+### 8. Capstone Project (My Chef)
 
-- Multi-turn conversational RAG
-- Tool-augmented RAG
-- Cost & performance optimization
-
-### 9. Capstone Project
-
-- End-to-end RAG app
-- Deployment with Gradio/Streamlit
+- End-to-end simple Q&A RAG app
+- Run locally with Gradio
+- Use LLMs running locally
 
 ---
 
@@ -77,5 +71,10 @@ alternative, use google collab
 - Each chapter has a **notebook** with explanations + code
 - Follow in order for a progressive learning path
 - Reusable Python scripts live in `common/`
+
+---
+
+**Caveat**:
+This chatbot is a **learning project only** and is **not production-ready**. The objective of this tutorial is to build intuition on RAGS and to give enough hands on experience to learners.
 
 ---
