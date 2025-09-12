@@ -72,3 +72,19 @@ This course combines **theory + hands-on notebooks** to help you understand, imp
 This chatbot is a **learning project only** and is **not production-ready**. The objective of this tutorial is to build intuition on RAGS and to give enough hands on experience to learners.
 
 ---
+
+
+
+# Bakers Choice Recipe Book
+
+## Disclaimer
+
+This repository is created **for educational purposes only** as part of a course on Git.
+The contents of the book *"Bakers Choice Recipe Book"* remain the intellectual property of **Graceco Limited**.
+
+**Copyright © 2018 Graceco Limited. All rights reserved.**
+[www.graceco.com.ng](http://www.graceco.com.ng) | info@graceco.com.ng
+
+No part of the book may be reproduced, distributed, or transmitted in any form or by any means—electronic, mechanical, photocopying, recording, or otherwise—without prior written permission from the publishers.
+
+This repository does **not** grant any license or rights to use, reproduce, or distribute the copyrighted material outside the scope of the course.
