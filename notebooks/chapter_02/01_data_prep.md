@@ -26,9 +26,11 @@ Cleaning means stripping out all the unnecessary parts and keeping only what’s
 
 ### Chunking Strategies
 
-LLMs can’t handle huge documents in one go, so we need to break text into **bite-sized chunks**. There are many ways to do this, but in this course, we’ll focus only on the techniques that have **proven effective in real-world RAG pipelines**.
+LLMs typically struggle with very large documents, so it’s common practice to break text into smaller, manageable chunks. This makes retrieval and processing more efficient and ensures that context is preserved.
 
-Here’s what works well:
+In this course, we’ll focus on chunking techniques that have proven effective in **real-world, domain-specific RAG pipelines**—where precision and relevance matter more than simply fitting text into a model’s context window.
+
+**Note:** Extremely large models with extended context windows can sometimes handle long documents directly. However, for **domain-specific tasks** (e.g., legal, medical, financial, or technical documents), chunking is still critical because it improves accuracy, reduces noise, and ensures that retrieval surfaces the most relevant information instead of overwhelming the model with unnecessary details.
 
 1. **Fixed-size chunks** – Split the text every *N* words or tokens.
 
