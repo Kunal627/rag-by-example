@@ -52,13 +52,7 @@ This course combines **theory + hands-on notebooks** to help you understand, imp
 - Reranking retrieved results
 - Handling long contexts
 
-### 7. Evaluation
-
-- Metrics for RAG (precision, recall, faithfulness)
-- Human vs. automated evaluation
-- Benchmark datasets
-
-### 8. Capstone Project (My Chef)
+### 7. Capstone Project (My Chef)
 
 - End-to-end simple Q&A RAG app
 - Run locally with Gradio
